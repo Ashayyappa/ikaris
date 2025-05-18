@@ -54,3 +54,7 @@ def chat_endpoint():
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
+git add requirements.txt
+git commit -m "Add requirements.txt for deployment"
+git push
+
