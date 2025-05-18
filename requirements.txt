@@ -1,0 +1,10 @@
+Flask
+flask-cors
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+google-ai-generativelanguage
+google-generativeai
+beautifulsoup4
+tqdm
