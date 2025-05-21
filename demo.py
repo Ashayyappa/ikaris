@@ -5,7 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-
+from flask_cors import CORS
+CORS(app)
 # Gemini API Key (make sure it's still valid)
 GEMINI_API_KEY = "AIzaSyDWKfO3SfxcFHAjCmN71P1M5x1r8vgixwM"
 genai.configure(api_key=GEMINI_API_KEY)
