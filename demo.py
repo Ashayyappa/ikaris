@@ -5,15 +5,14 @@ import requests
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-from flask_cors import CORS
-CORS(app,resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+
 # Gemini API Key (make sure it's still valid)
 GEMINI_API_KEY = "AIzaSyDWKfO3SfxcFHAjCmN71P1M5x1r8vgixwM"
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.0-flash")
 chat = model.start_chat()
 
-# UPDATED scraper
 def scrape_website(url):
     try:
         headers = {
@@ -38,7 +37,7 @@ def scrape_website(url):
 def chatbot_reply(message):
     news_keywords = ["news", "latest", "headlines", "today", "breaking", "update"]
     if any(word in message.lower() for word in news_keywords):
-        return scrape_website("https://www.bbc.com/news")  # or use Times of India
+        return scrape_website("https://www.bbc.com/news")
     else:
         return chat.send_message(message).text
 
@@ -52,7 +51,7 @@ def chat_endpoint():
     if not user_input:
         return jsonify({'error': 'Message is required'}), 400
     reply = chatbot_reply(user_input)
-    return jsonify({'reply': reply})
+    return jsonify({'response': reply})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
